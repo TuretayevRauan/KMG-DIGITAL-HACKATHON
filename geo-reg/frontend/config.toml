@@ -1,0 +1,15 @@
+# Современная тёмная тема. Файл лежит в frontend/.streamlit/config.toml
+# Streamlit подхватывает её автоматически при запуске из папки frontend.
+[theme]
+base = "dark"
+primaryColor = "#2DD4BF"             # бирюзовый акцент
+backgroundColor = "#0B0F14"
+secondaryBackgroundColor = "#11161D"
+textColor = "#E6EDF3"
+font = "sans serif"
+
+[server]
+maxUploadSize = 200
+
+[browser]
+gatherUsageStats = false

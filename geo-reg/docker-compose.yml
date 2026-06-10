@@ -1,0 +1,39 @@
+version: '3.8'
+
+services:
+
+  # Векторная база данных (для поиска по смыслу)
+  qdrant:
+    image: qdrant/qdrant
+    ports:
+      - "6333:6333"
+    volumes:
+      - qdrant_data:/qdrant/storage
+
+  # Графовая база данных (для связей между сущностями)
+  neo4j:
+    image: neo4j:5
+    ports:
+      - "7474:7474"   # веб-интерфейс
+      - "7687:7687"   # подключение из кода
+    environment:
+      NEO4J_AUTH: neo4j/password123
+    volumes:
+      - neo4j_data:/data
+
+  # Обычная база данных (для метаданных документов)
+  postgres:
+    image: postgres:15
+    ports:
+      - "5432:5432"
+    environment:
+      POSTGRES_USER: user
+      POSTGRES_PASSWORD: password
+      POSTGRES_DB: geodb
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+
+volumes:
+  qdrant_data:
+  neo4j_data:
+  postgres_data:
